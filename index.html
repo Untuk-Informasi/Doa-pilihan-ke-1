@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doa-Doa Pilihan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ffecd2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            color: #5d4e37;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            color: #8b7355;
+            font-style: italic;
+        }
+
+        .prayer-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .prayer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .prayer-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .card-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 4em;
+            font-weight: bold;
+            color: rgba(93, 78, 55, 0.1);
+            z-index: 1;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .arabic-text {
+            font-size: 1.8em;
+            line-height: 2;
+            text-align: right;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe8cc 100%);
+            border-radius: 15px;
+            border-right: 5px solid #d4a574;
+            animation: slideInRight 1s ease-out;
+        }
+
+        .translation {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #34495e;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(241, 196, 15, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #f1c40f;
+        }
+
+        .source {
+            font-size: 0.95em;
+            color: #7f8c8d;
+            font-style: italic;
+            padding: 10px;
+            background: rgba(149, 165, 166, 0.1);
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .source strong {
+            color: #5d4e37;
+        }
+
+        .decorative-line {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #d4a574, transparent);
+            margin: 20px 0;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .floating-ornament {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .ornament1 {
+            top: 10%;
+            left: 5%;
+            font-size: 3em;
+            color: #d4a574;
+        }
+
+        .ornament2 {
+            top: 50%;
+            right: 5%;
+            font-size: 2.5em;
+            color: #f1c40f;
+            animation-delay: 2s;
+        }
+
+        .ornament3 {
+            bottom: 15%;
+            left: 10%;
+            font-size: 2em;
+            color: #e67e22;
+            animation-delay: 4s;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .prayer-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .prayer-card:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .prayer-card:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            .arabic-text {
+                font-size: 1.4em;
+            }
+            .card-number {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-ornament ornament1">✦</div>
+    <div class="floating-ornament ornament2">❋</div>
+    <div class="floating-ornament ornament3">✿</div>
+
+    <div class="container">
+        <div class="header">
+            <h1>✨ Doa-Doa Pilihan ✨</h1>
+            <p>Kumpulan Doa dari Al-Qur'an dan Sunnah</p>
+        </div>
+
+        <div class="prayer-card">
+            <div class="card-number">1</div>
+            <div class="card-content">
+                <div class="arabic-text">
+                    اللَّهُمَّ يَا مُقَلِّبَ الْقُلُوبِ، ثَبِّتْ قَلْبِي عَلَى دِينِكَ
+                </div>
+                <div class="decorative-line"></div>
+                <div class="translation">
+                    <strong>Terjemahan:</strong><br>
+                    "Ya Allah, Wahai Yang Membolak-balikkan hati, tetapkanlah hatiku di atas agama-Mu."
+                </div>
+                <div class="source">
+                    <strong>Sumber:</strong> HR. At-Tirmidzi no. 2140 (Dinilai hasan shahih)<br>
+                    <strong>Tema:</strong> Doa Memohon Keteguhan Hati di Atas Agama
+                </div>
+            </div>
+        </div>
+
+        <div class="prayer-card">
+            <div class="card-number">2</div>
+            <div class="card-content">
+                <div class="arabic-text">
+                    رَبَّنَا ظَلَمْنَا أَنْفُسَنَا وَإِنْ لَمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ
+                </div>
+                <div class="decorative-line"></div>
+                <div class="translation">
+                    <strong>Terjemahan:</strong><br>
+                    "Wahai Rabb kami, kami telah menzalimi diri kami sendiri. Jika Engkau tidak mengampuni kami dan tidak merahmati kami, niscaya kami termasuk orang-orang yang merugi."
+                </div>
+                <div class="source">
+                    <strong>Sumber:</strong> Al-Qur'an, Surah Al-A'raf ayat 23<br>
+                    <strong>Tema:</strong> Doa Memohon Ampunan, Rahmat, dan Taubat (Doa Nabi Adam alaihis salam)
+                </div>
+            </div>
+        </div>
+
+        <div class="prayer-card">
+            <div class="card-number">3</div>
+            <div class="card-content">
+                <div class="arabic-text">
+                    رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ
+                </div>
+                <div class="decorative-line"></div>
+                <div class="translation">
+                    <strong>Terjemahan:</strong><br>
+                    "Wahai Rabb kami, berikanlah kepada kami kebaikan di dunia dan kebaikan di akhirat, serta lindungilah kami dari siksa neraka."
+                </div>
+                <div class="source">
+                    <strong>Sumber:</strong> Al-Qur'an, Surah Al-Baqarah ayat 201<br>
+                    <strong>Tema:</strong> Doa Memohon Kebaikan Dunia dan Akhirat<br>
+                    <em>(Doa yang paling sering dibaca Nabi ﷺ - HR. Al-Bukhari & Muslim)</em>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
